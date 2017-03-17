@@ -1,4 +1,6 @@
-﻿using ProyectoADAT.DAL;
+﻿using BespokeFusion;
+using ProyectoADAT.DAL;
+using ProyectoADAT.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace ProyectoADAT
     public partial class MainWindow : Window
     {
         public static UnitOfWork u = new UnitOfWork();
+        public static Usuario user = new Usuario();
         public MainWindow()
         {
             InitializeComponent();
@@ -42,6 +45,35 @@ namespace ProyectoADAT
         {
             ContraseñaOlvidada c = new ContraseñaOlvidada();
             c.ShowDialog();
+        }
+
+        private void btnAcceder_Click(object sender, RoutedEventArgs e)
+        {
+            if (u.RepositorioUsuarios.Single(a => a.nickUsuario == textBoxUser.Text || a.emailUsuario == textBoxUser.Text) != null)
+            {
+                if(u.RepositorioUsuarios.Single(a=>a.nickUsuario==textBoxUser.Text && a.passwordUsuario == passwordBox.Password) != null)
+                {
+                    user = u.RepositorioUsuarios.Single(a => a.nickUsuario == textBoxUser.Text);
+                    SeleccionarOpcion so = new SeleccionarOpcion();
+                    so.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MaterialMessageBox.ShowError("La contraseña y el usuario no son correctos.");
+                }
+            }
+            else
+            {
+                MaterialMessageBox.ShowError("No existe el usuario "+textBoxUser.Text + " en la base de datos");
+            }
+        }
+
+        private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
+        {
+            Registro registro = new Registro();
+            registro.Show();
+            this.Close();
         }
     }
 }

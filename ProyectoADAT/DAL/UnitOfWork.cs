@@ -8,7 +8,7 @@ namespace ProyectoADAT.DAL
 {
     public class UnitOfWork
     {
-        private ContabilidadContext context;
+        private ContabilidadContext context = new ContabilidadContext();
         private RepositorioUsuarios repositorioUsuarios;
         private RepositorioCuentasBancarias repositorioCuentasBancarias;
         private RepositorioIngresos repositorioIngresos;

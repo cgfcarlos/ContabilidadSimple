@@ -14,6 +14,8 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +35,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>infopago.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BespokeFusion, Version=1.0.1.10, Culture=neutral, processorArchitecture=MSIL">
@@ -55,6 +60,14 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.10\lib\itextsharp.xmlworker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.4.3.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.4.3\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
@@ -71,6 +84,17 @@
       <HintPath>..\packages\MaterialDesignThemes.2.2.1.750\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="microsoft.expression.prototyping.runtime, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PropertyChanged, Version=1.52.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.1.52.1\lib\netstandard10\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -82,7 +106,11 @@
     <Reference Include="System.Printing" />
     <Reference Include="System.ServiceModel.Activities" />
     <Reference Include="System.ServiceModel.Internals, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.4.3\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -108,7 +136,87 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Configuracion.xaml.cs">
+      <DependentUpon>Configuracion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703170735162_Cuarta.cs" />
+    <Compile Include="Migrations\201703170735162_Cuarta.Designer.cs">
+      <DependentUpon>201703170735162_Cuarta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703170848399_Quinta.cs" />
+    <Compile Include="Migrations\201703170848399_Quinta.Designer.cs">
+      <DependentUpon>201703170848399_Quinta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703170850335_Sexta.cs" />
+    <Compile Include="Migrations\201703170850335_Sexta.Designer.cs">
+      <DependentUpon>201703170850335_Sexta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703170921229_Siete.cs" />
+    <Compile Include="Migrations\201703170921229_Siete.Designer.cs">
+      <DependentUpon>201703170921229_Siete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PropertyValidateModel.cs" />
+    <Compile Include="Plantilla.xaml.cs">
+      <DependentUpon>Plantilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prestamos.xaml.cs">
+      <DependentUpon>Prestamos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Historial.xaml.cs">
+      <DependentUpon>Historial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InfoCuenta.xaml.cs">
+      <DependentUpon>InfoCuenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703081145246_Auxiliar.cs" />
+    <Compile Include="Migrations\201703081145246_Auxiliar.Designer.cs">
+      <DependentUpon>201703081145246_Auxiliar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703090737036_Segunda.cs" />
+    <Compile Include="Migrations\201703090737036_Segunda.Designer.cs">
+      <DependentUpon>201703090737036_Segunda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703140822548_Tercera.cs" />
+    <Compile Include="Migrations\201703140822548_Tercera.Designer.cs">
+      <DependentUpon>201703140822548_Tercera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="RealizarGasto.xaml.cs">
+      <DependentUpon>RealizarGasto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RealizarIngreso.xaml.cs">
+      <DependentUpon>RealizarIngreso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Registro.xaml.cs">
+      <DependentUpon>Registro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroCuenta.xaml.cs">
+      <DependentUpon>RegistroCuenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarOpcion.xaml.cs">
+      <DependentUpon>SeleccionarOpcion.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Configuracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContraseñaOlvidada.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plantilla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prestamos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Historial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoCuenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,6 +244,26 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RealizarGasto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RealizarIngreso.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Registro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistroCuenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SeleccionarOpcion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Accion.cs" />
@@ -157,11 +285,33 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201703081145246_Auxiliar.resx">
+      <DependentUpon>201703081145246_Auxiliar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703090737036_Segunda.resx">
+      <DependentUpon>201703090737036_Segunda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703140822548_Tercera.resx">
+      <DependentUpon>201703140822548_Tercera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703170735162_Cuarta.resx">
+      <DependentUpon>201703170735162_Cuarta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703170848399_Quinta.resx">
+      <DependentUpon>201703170848399_Quinta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703170850335_Sexta.resx">
+      <DependentUpon>201703170850335_Sexta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703170921229_Siete.resx">
+      <DependentUpon>201703170921229_Siete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Plantilla\plantilla.xls" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -171,12 +321,36 @@
     <None Include="Scripts\jquery-3.1.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\angular-toggle-switch-bootstrap.css" />
     <Content Include="Content\angular-toggle-switch.css" />
     <Resource Include="Imagenes\infopago.ico" />
+    <Resource Include="Imagenes\infopago.png" />
+    <Resource Include="Imagenes\acciones.png" />
+    <Resource Include="Imagenes\Ingresar.PNG" />
+    <Resource Include="Imagenes\Retirar.PNG" />
+    <Resource Include="Imagenes\pdf.png" />
+    <Resource Include="Imagenes\excel.png" />
+    <Resource Include="Imagenes\extracto.png" />
+    <Resource Include="Imagenes\historial.png" />
+    <Resource Include="Imagenes\plantilla.ico" />
+    <Resource Include="Imagenes\plus.png" />
+    <Resource Include="Imagenes\config.png" />
+    <Resource Include="Imagenes\back.png" />
+    <Resource Include="Imagenes\trash.png" />
+    <Resource Include="Imagenes\Pencil.ico" />
+    <Resource Include="Imagenes\img.PNG" />
+    <Resource Include="Imagenes\find_search.png" />
+    <Resource Include="Imagenes\portatil.png" />
+    <Resource Include="Imagenes\logout.ico" />
+    <Resource Include="Imagenes\af.PNG" />
+    <Resource Include="infopago.ico" />
+    <Resource Include="Imagenes\caculator.png" />
+    <Resource Include="FodyWeavers.xml" />
     <Content Include="Scripts\angular-toggle-switch.js" />
     <Content Include="Scripts\angular-toggle-switch.min.js" />
     <Content Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -186,8 +360,19 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\nugetexample.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Usuarios\00000000\" />
+    <Folder Include="Usuarios\12132132321\" />
+    <Folder Include="Usuarios\2131313654\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.2\build\dotnet\Fody.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProyectoADAT.Migrations;
 
 namespace ProyectoADAT.DAL
 {
@@ -12,7 +13,10 @@ namespace ProyectoADAT.DAL
     {
         public ContabilidadContext() : base("ContabilidadContext")
         {
-
+            if (!Database.Exists())
+            {
+                Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContabilidadContext, Configuration>());
+            }
         }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<CuentaBancaria> CuentasBancarias { get; set; }

@@ -9,16 +9,16 @@
         mc:Ignorable="d"
         Title="Login" Height="513.158" Width="525" ResizeMode="NoResize" Icon="Imagenes/infopago.ico">
     <Grid Background="Beige">
-        <TextBox x:Name="textBoxUser" HorizontalAlignment="Left" Height="22" materialDesign:HintAssist.Hint="Email o Usuario" Margin="140,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="244"/>
-        <PasswordBox x:Name="passwordBox" materialDesign:HintAssist.Hint="Contraseña" HorizontalAlignment="Left" Margin="140,174,0,0" VerticalAlignment="Top" Width="244"/>
-        <Button x:Name="btnAcceder" Content="Acceder" HorizontalAlignment="Left" Margin="140,226,0,0" VerticalAlignment="Top" Width="244"/>
-        <Button x:Name="btnRegistrarse" Content="Registrarse" HorizontalAlignment="Left" Margin="140,290,0,0" VerticalAlignment="Top" Width="244"/>
+        <TextBox x:Name="textBoxUser" HorizontalAlignment="Left" Height="40" materialDesign:HintAssist.Hint="Email o Usuario" materialDesign:HintAssist.IsFloating="True" Margin="140,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="244"/>
+        <PasswordBox x:Name="passwordBox" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True" Height="40" HorizontalAlignment="Left" Margin="140,160,0,0" VerticalAlignment="Top" Width="244"/>
+        <Button x:Name="btnAcceder" Content="Acceder" HorizontalAlignment="Left" Margin="140,226,0,0" VerticalAlignment="Top" Width="244" Click="btnAcceder_Click"/>
+        <Button x:Name="btnRegistrarse" Content="Registrarse" HorizontalAlignment="Left" Margin="140,290,0,0" VerticalAlignment="Top" Width="244" Click="btnRegistrarse_Click"/>
         <ToggleButton Margin="140,350,325,86" x:Name="toggleBtn" Content=""/>
         <Label x:Name="labelRememberPass" Content="Recordar Contraseña" HorizontalAlignment="Left" Margin="198,350,0,86" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Width="150"/>
         <Label x:Name="labelForgotPass" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="140,420,0,0" VerticalAlignment="Top" Width="244">
             <TextBlock Name="textblock" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" MouseLeftButtonDown="textblock_MouseLeftButtonDown">¿Ha olvidado su contraseña?</TextBlock>
         </Label>
-        <Label x:Name="labelTitlePass" Content="Login" HorizontalAlignment="Left" Margin="140,36,0,0" VerticalAlignment="Top" Width="244" HorizontalContentAlignment="Center" Foreground="#8BC34A" FontSize="22"/>
+        <Label x:Name="lblTitlePass" Content="Login" HorizontalAlignment="Left" Margin="140,36,0,0" VerticalAlignment="Top" Width="244" HorizontalContentAlignment="Center" Foreground="#8BC34A" FontSize="22"/>
 
 
 

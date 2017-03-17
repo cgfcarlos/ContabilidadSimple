@@ -1,0 +1,45 @@
+﻿<Window x:Class="ProyectoADAT.DepositosYAcciones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoADAT"
+        mc:Ignorable="d"
+        Title="Prestamos" Height="843.425" Width="873.168" Closing="Window_Closing" Icon="Imagenes/infopago.ico" ResizeMode="NoResize">
+    <Grid Background="Beige">
+        <Label x:Name="lblTitlePass" Content="Préstamos" HorizontalAlignment="Left" Margin="266,31,0,0" VerticalAlignment="Top" Width="296" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#8BC34A" FontSize="25" Height="68"/>
+        <StackPanel HorizontalAlignment="Left" Height="662" Margin="30,104,0,0" VerticalAlignment="Top" Width="815" Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="784" Orientation="Horizontal" Height="38">
+                <Label Content="Capital (Montante)" FontSize="16"/>
+                <TextBox Name="textBoxMontante" Width="125" Margin="45,0,0,0" TextAlignment="Right"/>
+                <Label Content="Interés" FontSize="16" Margin="70,0,0,0"/>
+                <ComboBox Name="cmbInterés" Width="125">
+                    <ComboBoxItem Content="3%"/>
+                    <ComboBoxItem Content="4%"/>
+                    <ComboBoxItem Content="5%"/>
+                </ComboBox>
+                <Button Name="btnCalcular" Content="Calcular" Margin="20,0,0,0" Click="Button_Click"/>
+                <Button Name="btnAceptar" Content="Aceptar" Margin="20,0,0,0" Click="btnAceptar_Click"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="767" Orientation="Horizontal" Margin="0,15,0,0">
+                <Label Content="Numero de cuotas" FontSize="16"/>
+                <TextBox Name="textBoxCuotas" Text="12" TextAlignment="Right" IsEnabled="False" Width="125" Margin="45,0,0,0"/>
+                <Label Content="Forma de pago: Mensual" FontSize="16" Margin="70,0,0,0"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="767" Orientation="Horizontal" Margin="0,15,0,0">
+                <Label Content="Fecha de Concesion" FontSize="16"/>
+                <DatePicker Name="datePickerConcesion" Width="125" Margin="35,0,0,0" SelectedDateChanged="datePickerConcesion_SelectedDateChanged"/>
+                <Label Content="Fecha de Finalizacion" FontSize="16" Margin="70,0,0,0"/>
+                <DatePicker Name="datePickerFinalizacion" Width="125" Margin="40,0,0,0" IsEnabled="False"/>
+            </StackPanel>
+            <DataGrid x:Name="datagridPrestamo" Height="505" Margin="0,25,0,0" IsReadOnly="True"/>
+
+
+        </StackPanel>
+        <Button x:Name="buttonAtras" HorizontalAlignment="Left" Margin="97,46,0,0" VerticalAlignment="Top" Width="60" OpacityMask="Black" Background="#008BC34A" BorderBrush="#008BC34A" Height="47" MouseEnter="button_MouseEnter" Click="buttonAtras_Click" MouseLeave="button_MouseLeave">
+            <Image Source="Imagenes/back.png"/>
+        </Button>
+
+    </Grid>
+</Window>

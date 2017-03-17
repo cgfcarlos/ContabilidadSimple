@@ -1,0 +1,154 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ProyectoADAT"
+        xmlns:FlowGraph="clr-namespace:Microsoft.Expression.Prototyping.FlowGraph;assembly=Microsoft.Expression.Prototyping.Runtime" x:Class="ProyectoADAT.InfoCuenta"
+        mc:Ignorable="d"
+        Title="InfoCuenta" Height="895.138" Width="1361.5" ResizeMode="NoResize" Icon="Imagenes/infopago.ico">
+    <Grid Background="Beige">
+        <Menu x:Name="menu" Height="64" VerticalAlignment="Top" Width="1354" Background="#8BC34A" HorizontalAlignment="Left">
+            <MenuItem Name="Atras" Header="Atras" Height="64" Foreground="White" FontFamily="Microsoft JhengHei" Click="Atras_Click">
+                <MenuItem.Icon>
+                    <Image Source="Imagenes/back.png"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Name="MenuRealizarExtracto" Height="64" Header="Realizar Extracto Bancario" Click="MenuRealizarExtracto_Click" FontFamily="Microsoft JhengHei Light" Foreground="#DDFFFFFF">
+                <MenuItem.Icon>
+                    <Image Source="Imagenes/extracto.png" Margin="-2,0,2,0"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="MenuHistorial" Height="64" Header="Historial de Ingresos y Gastos" FontFamily="Microsoft JhengHei" Foreground="#DDFFFEFE" Click="MenuHistorial_Click">
+                <MenuItem.Icon>
+                    <Image Source="Imagenes/historial.png"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Name="MenuExcel" Height="64" Header="Obtener Excel Mes Actual" Click="MenuExcel_Click" FontFamily="Microsoft JhengHei" Foreground="#DDFFFFFF">
+                <MenuItem.Icon>
+                    <Image Source="Imagenes/excel.png"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Name="MenuPlantilla" Height="64" Header="Realizar Plantilla de Ingresos y Gastos" FontFamily="Microsoft JhengHei" Foreground="#DDFFFFFF" Click="MenuPlantilla_Click">
+                <MenuItem.Icon>
+                    <Image Source="Imagenes/plantilla.ico"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Name="Menuplus" Height="64" Padding="0" Click="Menuplus_Click" Width="112">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,-23,0">
+                        <Image Source="Imagenes/plus.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="33" Width="35"/>
+                        <TextBlock VerticalAlignment="Center" FontFamily="Microsoft JhengHei" Foreground="White" Width="53">Más</TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+
+        </Menu>
+        <Label x:Name="lblTitlePass" Content="Cuenta Bancaria" HorizontalAlignment="Left" Margin="534,69,0,0" VerticalAlignment="Top" Width="296" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#33691E" FontSize="25" Height="68"/>
+        <Grid HorizontalAlignment="Left" Height="154" Margin="111,201,0,0" VerticalAlignment="Top" Width="404">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38"/>
+                <RowDefinition Height="38"/>
+                <RowDefinition Height="38"/>
+                <RowDefinition Height="38"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="274"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="image" Stretch="UniformToFill" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="154"/>
+            <Label x:Name="label" Content="{Binding Path=numeroCuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Width="250" Height="38"/>
+            <Label x:Name="label_Copy" Content="{Binding Path=titularCuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Height="38" Grid.Row="1" Width="250"/>
+            <Label x:Name="label_Copy1" Content="{Binding Path=entidadCuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Height="38" Grid.Row="2" Width="250"/>
+            <StackPanel Grid.Column="1" Grid.Row="3" Margin="0,0,20,0" Orientation="Horizontal">
+                <Label x:Name="label_Copy2" Content="{Binding Path=saldo}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Height="38" Width="200"/>
+                <Label x:Name="label_Copy3" Content="€" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Height="38" Width="53"/>
+            </StackPanel>
+
+
+        </Grid>
+        <StackPanel Name="panelOculto" HorizontalAlignment="Left" Height="310" Margin="997,64,0,0" VerticalAlignment="Top" Width="357" Background="LightGreen" Visibility="Hidden" Orientation="Vertical" MouseLeave="panelOculto_MouseLeave" Panel.ZIndex="100" >
+            <Menu Height="310" Background="#C5E1A5">
+                <MenuItem Name="Config" Header="Configuración de la cuenta" Foreground="#33691E" Height="78" Width="428" Click="Config_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes/config.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem  Header="Ventana Realizar Gasto" Foreground="#33691E" Height="78" Width="428" Click="MenuItem_Click_1">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes/config.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem  Header="Ventana Realizar Ingreso" Foreground="#33691E" Height="78" Width="428" Click="MenuItem_Click_2">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes/config.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Ventana Realizar Prestamo" Foreground="#33691E" Height="78" Width="428" Click="MenuItem_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes/config.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <Grid HorizontalAlignment="Left" Height="312" Margin="49,449,0,0" VerticalAlignment="Top" Width="601">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="280"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="label1" Grid.Row="0" Content="Estado de la cuenta mes actual" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top"/>
+            <DataGrid x:Name="dataGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="278" Width="601" VerticalContentAlignment="Center" AutoGenerateColumns="True" IsReadOnly="True" MouseEnter="dataGrid_MouseEnter" RowBackground="#FF8BC34A" HorizontalContentAlignment="Center" AlternatingRowBackground="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" BorderBrush="#8BC34A" BorderThickness="1"/>
+
+
+        </Grid>
+        <GroupBox x:Name="groupBox" HorizontalAlignment="Left" Margin="714,482,0,0" VerticalAlignment="Top" Height="279" Width="616">
+            <GroupBox.Header>
+                <TextBlock Foreground="White">Estadísticas del mes en curso</TextBlock>
+            </GroupBox.Header>
+            <StackPanel Orientation="Horizontal">
+                <WindowsFormsHost x:Name="host" Height="auto" RenderTransformOrigin="0.5,0.5" Width="474" Panel.ZIndex="-1">
+                    <WindowsFormsHost.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </WindowsFormsHost.RenderTransform>
+                    <winformchart:Chart x:Name="MyWinformChart" Dock="Fill">
+                        <winformchart:Chart.Series>
+                            <winformchart:Series Name="Ingresos" ChartType="Column"/>
+                            <!--<winformchart:Series Name="Gastos" ChartType="Column"/>-->
+                        </winformchart:Chart.Series>
+                        <winformchart:Chart.ChartAreas>
+                            <winformchart:ChartArea/>
+                        </winformchart:Chart.ChartAreas>
+                    </winformchart:Chart>
+                </WindowsFormsHost>
+                <StackPanel Orientation="Vertical" Width="123">
+                    <RadioButton Name="radioColumnas" Content="Columnas" Margin="10,20,10,10" Checked="radioColumnas_Checked" IsChecked="True"/>
+                    <RadioButton Name="radioCircular" Content="Circular" Margin="10" Checked="radioCircular_Checked"/>
+                    <RadioButton Name="radioBarras" Content="Barras" Margin="10" Checked="radioBarras_Checked"/>
+                    <RadioButton Name="radioLine" Content="Lineas" Margin="10" Checked="radioLineas_Checked"/>
+                    <RadioButton Name="radioRange" Content="Rango" Margin="10" Checked="radioRango_Checked"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="278" Margin="714,176,0,0" VerticalAlignment="Top" Width="616" BorderBrush="#8BC34A" BorderThickness="1" SelectionChanged="listBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Stretch="UniformToFill" Height="24"
+                                   Width="24" Margin="2,1"
+                                   Source="Imagenes/pdf.png"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label x:Name="label1_Copy" Grid.Row="0" Content="Extractos bancarios domicializados" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top" Margin="714,142,0,0"/>
+
+    </Grid>
+</Window>
