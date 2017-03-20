@@ -91,7 +91,7 @@ namespace ProyectoADAT
                     }
                     else
                     {
-                        MaterialMessageBox.ShowError("Rellene los campos correctamente")
+                        MaterialMessageBox.ShowError("Rellene los campos correctamente");
                     }
                 }
                 else

@@ -32,7 +32,7 @@ namespace ProyectoADAT
             InitializeComponent();
             this.user = u;
             DataContext = user;
-            if (user.imagenUsuario != null)
+            if (user.imagenUsuario != null && filename!="")
             {
                 image.Source = new BitmapImage(new Uri(System.Environment.CurrentDirectory + "../../../Imagenes/" + u.imagenUsuario));
             }
@@ -165,6 +165,12 @@ namespace ProyectoADAT
         private void button_MouseLeave(object sender, MouseEventArgs e)
         {
             button.Background.Opacity = 0;
+        }
+
+        private void buttonInforme_Click(object sender, RoutedEventArgs e)
+        {
+            Informes inf = new Informes();
+            inf.ShowDialog();
         }
     }
 }
