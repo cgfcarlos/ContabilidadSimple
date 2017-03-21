@@ -69,47 +69,29 @@ namespace ProyectoADAT
                 }
             }
         }
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(datepickerInicio.Text) && !String.IsNullOrWhiteSpace(datepickerFin.Text) &&
-                !String.IsNullOrWhiteSpace(textBoxConcepto.Text) && !String.IsNullOrWhiteSpace(textBoxCuantiaMin.Text) &&
-                !String.IsNullOrWhiteSpace(textBoxCuantiaMax.Text))
+
+            if(datepickerInicio.Text!="" && datepickerFin.Text == "")
             {
                 dataGridIngresos.ItemsSource = "";
                 dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text) && a.fechaValor < Convert.ToDateTime(datepickerFin.Text) && textBoxConcepto.Text.Contains(a.tipoGasto) && a.cuantia > Convert.ToDecimal(textBoxCuantiaMin.Text) && a.cuantia < Convert.ToDecimal(textBoxCuantiaMax.Text));
-                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text) && a.fechaValor < Convert.ToDateTime(datepickerFin.Text) && textBoxConcepto.Text.Contains(a.tipoIngreso) && a.cuantia > Convert.ToDecimal(textBoxCuantiaMin.Text) && a.cuantia < Convert.ToDecimal(textBoxCuantiaMax.Text));
+                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.GetAll().Where(a => a.CuentaBancaria==cuenta && a.fechaOperacion>=Convert.ToDateTime(datepickerInicio.Text));
+                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion>=Convert.ToDateTime(datepickerInicio.Text));
             }
-            else if (!String.IsNullOrWhiteSpace(datepickerInicio.Text) && !String.IsNullOrWhiteSpace(datepickerFin.Text) &&
-                !String.IsNullOrWhiteSpace(textBoxConcepto.Text) && !String.IsNullOrWhiteSpace(textBoxCuantiaMin.Text))
+            else if(datepickerFin.Text != "" && datepickerInicio.Text == "")
             {
                 dataGridIngresos.ItemsSource = "";
                 dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text) && a.fechaValor < Convert.ToDateTime(datepickerFin.Text) && textBoxConcepto.Text.Contains(a.tipoGasto) && a.cuantia > Convert.ToDecimal(textBoxCuantiaMin.Text));
-                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text) && a.fechaValor < Convert.ToDateTime(datepickerFin.Text) && textBoxConcepto.Text.Contains(a.tipoIngreso) && a.cuantia > Convert.ToDecimal(textBoxCuantiaMin.Text));
+                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion <= Convert.ToDateTime(datepickerFin.Text));
+                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion <= Convert.ToDateTime(datepickerFin.Text));
             }
-            else if (!String.IsNullOrWhiteSpace(datepickerInicio.Text) && !String.IsNullOrWhiteSpace(datepickerFin.Text) &&
-                !String.IsNullOrWhiteSpace(textBoxConcepto.Text))
+            else if(datepickerFin.Text != "" && datepickerInicio.Text != "")
             {
                 dataGridIngresos.ItemsSource = "";
                 dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text) && a.fechaValor < Convert.ToDateTime(datepickerFin.Text) && textBoxConcepto.Text.Contains(a.tipoGasto));
-                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text) && a.fechaValor < Convert.ToDateTime(datepickerFin.Text) && textBoxConcepto.Text.Contains(a.tipoIngreso));
-            }
-            else if (!String.IsNullOrWhiteSpace(datepickerInicio.Text) && !String.IsNullOrWhiteSpace(datepickerFin.Text))
-            {
-                dataGridIngresos.ItemsSource = "";
-                dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text) && a.fechaValor < Convert.ToDateTime(datepickerFin.Text));
-                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text) && a.fechaValor < Convert.ToDateTime(datepickerFin.Text));
-            }
-            else if (!String.IsNullOrWhiteSpace(datepickerInicio.Text))
-            {
-                dataGridIngresos.ItemsSource = "";
-                dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text));
-                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.Get(filter: a => a.fechaOperacion.Date > Convert.ToDateTime(datepickerInicio.Text));
+                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion>=Convert.ToDateTime(datepickerInicio.Text) && a.fechaOperacion <= Convert.ToDateTime(datepickerFin.Text));
+                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion>=Convert.ToDateTime(datepickerInicio.Text) && a.fechaOperacion <= Convert.ToDateTime(datepickerFin.Text));
             }
             else
             {
@@ -118,18 +100,7 @@ namespace ProyectoADAT
                 dataGridGastos.ItemsSource = cuenta.Gastos;
                 dataGridIngresos.ItemsSource = cuenta.Ingresos;
             }
-        }
-
-        private void textBoxCuantiaMin_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!char.IsDigit(e.Text, e.Text.Length - 1))
-                e.Handled = true;
-        }
-
-        private void textBoxCuantiaMax_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!char.IsDigit(e.Text, e.Text.Length - 1))
-                e.Handled = true;
+            
         }
 
         private void textBoxConcepto_TextChanged(object sender, TextChangedEventArgs e)

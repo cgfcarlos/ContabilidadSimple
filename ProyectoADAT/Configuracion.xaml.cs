@@ -32,6 +32,7 @@ namespace ProyectoADAT
             InitializeComponent();
             this.user = u;
             DataContext = user;
+            filename = user.imagenUsuario;
             if (user.imagenUsuario != null && filename!="")
             {
                 image.Source = new BitmapImage(new Uri(System.Environment.CurrentDirectory + "../../../Imagenes/" + u.imagenUsuario));

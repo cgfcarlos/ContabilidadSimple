@@ -13,5 +13,20 @@ namespace ProyectoADAT.DAL
         {
 
         }
+
+        public IEnumerable<Gasto> GetFiltrado(String buscado)
+        {
+            if (!string.IsNullOrWhiteSpace(buscado))
+            {
+                return Get(filter: (a => a.tipoGasto.ToUpper().Contains(buscado.ToUpper())
+                                            || a.nombreGasto.ToUpper().Contains(buscado.ToUpper())
+                                            || a.fechaOperacion > (Convert.ToDateTime(buscado))
+                                            || a.fechaOperacion < (Convert.ToDateTime(buscado))
+                                            || a.cuantia > (Convert.ToDecimal(buscado))
+                                            || a.cuantia < (Convert.ToDecimal(buscado))
+                                            ));
+            }
+            else return Get();
+        }
     }
 }

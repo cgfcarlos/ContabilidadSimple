@@ -43,16 +43,15 @@
                 <DataGridTextColumn Header="Cuantia" Binding="{Binding Path=cuantia}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="label" Content="Filtrar por:" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="datepickerInicio" HorizontalAlignment="Left" Margin="79,98,0,0" materialDesign:HintAssist.Hint="Fecha Inicio" materialDesign:HintAssist.IsFloating="True" VerticalAlignment="Top" Width="141" Height="38"/>
-        <DatePicker x:Name="datepickerFin" HorizontalAlignment="Left" Margin="281,98,0,0" materialDesign:HintAssist.Hint="Fecha Fin" materialDesign:HintAssist.IsFloating="True" VerticalAlignment="Top" Height="38" Width="141"/>
-        <Label x:Name="label1" Content="-" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="225,110,0,0" VerticalAlignment="Top" Width="51"/>
-        <TextBox x:Name="textBoxConcepto" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Concepto" materialDesign:HintAssist.IsFloating="True" Height="38" Margin="476,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxConcepto_TextChanged"/>
-        <TextBox x:Name="textBoxCuantiaMin" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Cuantía Min" materialDesign:HintAssist.IsFloating="True" Height="38" Margin="623,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" PreviewTextInput="textBoxCuantiaMin_PreviewTextInput"/>
-        <TextBox x:Name="textBoxCuantiaMax" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Cuantía Max" materialDesign:HintAssist.IsFloating="True" Height="38" Margin="767,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" PreviewTextInput="textBoxCuantiaMax_PreviewTextInput"/>
-        <Button x:Name="buttonSearch" HorizontalAlignment="Left" Margin="901,104,0,0" VerticalAlignment="Top" Width="38" Padding="0" Click="button_Click">
-            <Image Source="Imagenes/find_search.png" />
-        </Button>
+        <Grid Name="filtro" Margin="0,0,0,402">
+            <Label x:Name="label" Content="Filtrar por:" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top"/>
+            <DatePicker x:Name="datepickerInicio" HorizontalAlignment="Left" Margin="79,98,0,0" materialDesign:HintAssist.Hint="Fecha Inicio" materialDesign:HintAssist.IsFloating="True" VerticalAlignment="Top" Width="141" Height="38"/>
+            <DatePicker x:Name="datepickerFin" HorizontalAlignment="Left" Margin="281,98,0,0" materialDesign:HintAssist.Hint="Fecha Fin" materialDesign:HintAssist.IsFloating="True" VerticalAlignment="Top" Height="38" Width="141"/>
+            <Label x:Name="label1" Content="-" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="225,110,0,0" VerticalAlignment="Top" Width="51"/>
+            <Button x:Name="buttonSearch" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Padding="0" Click="button_Click" Margin="480,104,0,0">
+                <Image Source="Imagenes/find_search.png" />
+            </Button>
+        </Grid>
         <Button x:Name="buttonAtras" HorizontalAlignment="Left" Margin="96,31,0,0" VerticalAlignment="Top" Width="60" OpacityMask="Black" Background="#008BC34A" BorderBrush="#008BC34A" Height="47" MouseEnter="button_MouseEnter" Click="buttonAtras_Click" MouseLeave="button_MouseLeave">
             <Image Source="Imagenes/back.png"/>
         </Button>

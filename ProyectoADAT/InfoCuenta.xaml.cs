@@ -273,7 +273,7 @@ namespace ProyectoADAT
             // Utilizar una variable para almacenar la instrucción SQL.
             
             // metadata=res://*/Model1.csdl | res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=CentroMedico;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient"*/
-            string SelectString = "SELECT Ingresoes.fechaOperacion, Ingresoes.nombreIngreso, Ingresoes.fechaValor, Ingresoes.cuantia FROM Ingresoes UNION SELECT Gastoes.fechaOperacion, Gastoes.nombreGasto, Gastoes.fechaValor, Gastoes.cuantia FROM Gastoes";
+            string SelectString = "SELECT Ingresoes.fechaOperacion, Ingresoes.nombreIngreso, Ingresoes.fechaValor, Ingresoes.cuantia FROM Ingresoes WHERE CuentaBancaria_CuentaBancariaId="+ c.CuentaBancariaId +" UNION SELECT Gastoes.fechaOperacion, Gastoes.nombreGasto, Gastoes.fechaValor, Gastoes.cuantia FROM Gastoes WHERE CuentaBancaria_CuentaBancariaId = "+ c.CuentaBancariaId;
 
             SqlDataAdapter Adaptador = new SqlDataAdapter(SelectString, Conection);
 
@@ -473,7 +473,7 @@ namespace ProyectoADAT
 
         private void MenuPlantilla_Click(object sender, RoutedEventArgs e)
         {
-            Plantilla p = new Plantilla();
+            Plantilla p = new Plantilla(c);
             p.Show();
             this.Close();
         }

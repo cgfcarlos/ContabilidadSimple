@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ProyectoADAT"
         mc:Ignorable="d"
-        Title="Plantilla" Height="615.609" Width="803.549">
+        Title="Plantilla" Height="615.609" Width="803.549" Closing="Window_Closing">
     <Grid Background="Beige">
         <Label x:Name="lblTitlePass" Content="Plantilla" HorizontalAlignment="Left" Margin="266,31,0,0" VerticalAlignment="Top" Width="296" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#8BC34A" FontSize="25" Height="68"/>
         <StackPanel HorizontalAlignment="Left" Height="425" Margin="40,105,0,0" VerticalAlignment="Top" Width="720" Orientation="Vertical">
@@ -19,5 +19,8 @@
             </StackPanel>
             <DataGrid x:Name="dataGridExcel" Height="373" Margin="0,10,0,0" DataContext="{Binding Mode=OneWay}"/>
         </StackPanel>
+        <Button x:Name="buttonAtras" HorizontalAlignment="Left" Margin="96,31,0,0" VerticalAlignment="Top" Width="60" OpacityMask="Black" Background="#008BC34A" BorderBrush="#008BC34A" Height="47" MouseEnter="button_MouseEnter" Click="buttonAtras_Click" MouseLeave="button_MouseLeave">
+            <Image Source="Imagenes/back.png"/>
+        </Button>
     </Grid>
 </Window>

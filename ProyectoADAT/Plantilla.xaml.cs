@@ -1,4 +1,5 @@
 ﻿using Excel;
+using ProyectoADAT.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,9 +23,11 @@ namespace ProyectoADAT
     /// </summary>
     public partial class Plantilla : Window
     {
-        public Plantilla()
+        CuentaBancaria cuenta = new CuentaBancaria();
+        public Plantilla(CuentaBancaria c)
         {
             InitializeComponent();
+            this.cuenta = c;
         }
         DataSet result;
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -95,6 +98,27 @@ namespace ProyectoADAT
         private void btnCalculadora_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("calc");
+        }
+        private void buttonAtras_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Color c = Color.FromScRgb(100, 139, 195, 74);
+            SolidColorBrush aux = new SolidColorBrush(c);
+            buttonAtras.Background = aux;
+        }
+
+        private void button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonAtras.Background.Opacity = 0;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            InfoCuenta ic = new InfoCuenta(cuenta);
+            ic.Show();
         }
     }
 
