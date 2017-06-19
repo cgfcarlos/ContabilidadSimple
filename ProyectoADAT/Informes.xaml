@@ -9,7 +9,7 @@
         Title="Informes" Height="711" Width="1093.5" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid>
 
-        <Viewer:CrystalReportsViewer Name="informe" HorizontalAlignment="Left" VerticalAlignment="Top" Height="680" Width="1086"/>
+        <Viewer:CrystalReportsViewer Name="informe" HorizontalAlignment="Left" VerticalAlignment="Top" Height="680" Width="1086" Margin="-4,2,0,0"/>
 
     </Grid>
 </Window>

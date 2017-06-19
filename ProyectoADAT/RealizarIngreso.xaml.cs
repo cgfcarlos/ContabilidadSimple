@@ -24,7 +24,7 @@ namespace ProyectoADAT
     public partial class RealizarIngreso : Window
     {
         CuentaBancaria c;
-        Ingreso i = new Ingreso();
+        Operacion i = new Operacion();
         public RealizarIngreso(CuentaBancaria c)
         {
             InitializeComponent();
@@ -62,22 +62,22 @@ namespace ProyectoADAT
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(textBoxNombre.Text) && !String.IsNullOrWhiteSpace(textBoxTipo.Text) && !String.IsNullOrWhiteSpace(textBoxCuantia.Text) && datePickerFechaOp.SelectedDate != null && datePickerFechaVa.SelectedDate != null)
+            if (!String.IsNullOrWhiteSpace(textBoxNombre.Text) && !String.IsNullOrWhiteSpace(textBoxCuantia.Text) && datePickerFechaOp.SelectedDate != null && datePickerFechaVa.SelectedDate != null)
             {
                 if (char.IsDigit(textBoxCuantia.Text[0]))
                 {
-                    i = new Ingreso();
-                    i.nombreIngreso = textBoxNombre.Text;
-                    i.tipoIngreso = textBoxTipo.Text;
+                    i = new Operacion();
+                    i.nombreoperacion = textBoxNombre.Text;
+                    i.tipooperacion = "Ingreso";
                     decimal aux;
                     Decimal.TryParse(textBoxCuantia.Text.Replace('.', ','), out aux);
                     i.cuantia = Convert.ToDecimal(aux);
-                    i.fechaOperacion = Convert.ToDateTime(datePickerFechaOp.Text);
-                    i.fechaValor = Convert.ToDateTime(datePickerFechaVa.Text);
+                    i.fechaoperacion = Convert.ToDateTime(datePickerFechaOp.Text);
+                    i.fechavalor = Convert.ToDateTime(datePickerFechaVa.Text);
                     i.CuentaBancaria = c;
                     if (validado(i))
                     {
-                        MainWindow.u.RepositorioIngresos.Create(i);
+                        MainWindow.u.RepositorioOperaciones.Create(i);
                         //InfoCuenta ic = new InfoCuenta(c);
                         //ic.Show();
                         this.Close();

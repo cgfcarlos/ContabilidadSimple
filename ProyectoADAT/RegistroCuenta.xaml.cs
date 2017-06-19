@@ -67,25 +67,25 @@ namespace ProyectoADAT
             {
 
 
-                if (MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numeroCuenta == textBoxNumeroCuenta.Text) == null)
+                if (MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numerocuenta == textBoxNumeroCuenta.Text) == null)
                 {
                     if(char.IsDigit(textBoxSaldo.Text[0]))
                         cuenta = new CuentaBancaria();
-                        cuenta.numeroCuenta = textBoxNumeroCuenta.Text;
-                        cuenta.titularCuenta = textBoxTitular.Text;
-                        cuenta.entidadCuenta = textBoxEntidad.Text;
-                        cuenta.tipoCuenta = textBoxTipo.Text;
-                        cuenta.paisDomiciliacion = textBoxPaisDomiciliacion.Text;
-                        cuenta.BIC = textBoxBIC.Text;
+                        cuenta.numerocuenta = textBoxNumeroCuenta.Text;
+                        cuenta.titularcuenta = textBoxTitular.Text;
+                        cuenta.entidadcuenta = textBoxEntidad.Text;
+                        cuenta.tipocuenta = textBoxTipo.Text;
+                        cuenta.paisdomiciliacion = textBoxPaisDomiciliacion.Text;
+                        cuenta.bic = textBoxBIC.Text;
                         
                         cuenta.saldo = Convert.ToDecimal(textBoxSaldo.Text);
                         cuenta.Usuario = user;
                     if (validado(cuenta))
                     {
                         MainWindow.u.RepositorioCuentasBancarias.Create(cuenta);
-                        if (!Directory.Exists(@".\..\..\Usuarios\" + cuenta.numeroCuenta))
+                        if (!Directory.Exists(@".\..\..\Usuarios\" + cuenta.numerocuenta))
                         {
-                            Directory.CreateDirectory(@".\..\..\Usuarios\" + cuenta.numeroCuenta);
+                            Directory.CreateDirectory(@".\..\..\Usuarios\" + cuenta.numerocuenta);
                         }
                         this.Close();
                     }

@@ -32,8 +32,8 @@ namespace ProyectoADAT
             foreach (CuentaBancaria item in MainWindow.user.CuentasBancarias)
             {
                 MenuItem mi = new MenuItem();
-                mi.Header = item.numeroCuenta;
-                mi.ToolTip = item.numeroCuenta.ToString();
+                mi.Header = item.numerocuenta;
+                mi.ToolTip = item.numerocuenta.ToString();
                 mi.Click += menuItem_Click;
                 cm.Items.Add(mi);
             }
@@ -50,8 +50,8 @@ namespace ProyectoADAT
             {
                 MenuItem mi = (MenuItem)sender;
                 string cuenta = mi.Header.ToString();
-                c = MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numeroCuenta == cuenta);
-                InfoCuenta ic = new InfoCuenta(MainWindow.user.CuentasBancarias.FirstOrDefault());
+                c = MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numerocuenta == cuenta);
+                InfoCuenta ic = new InfoCuenta(c);
                 ic.Show();
                 this.Close();
             }
@@ -61,8 +61,8 @@ namespace ProyectoADAT
         {
             MenuItem mi = (MenuItem)sender;
             string cuenta = mi.Header.ToString();
-            c = MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numeroCuenta == cuenta);
-            RealizarGasto rg = new RealizarGasto(MainWindow.user.CuentasBancarias.FirstOrDefault());
+            c = MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numerocuenta == cuenta);
+            RealizarGasto rg = new RealizarGasto(c);
             rg.Show();
             this.Close();
         }
@@ -71,9 +71,9 @@ namespace ProyectoADAT
         {
             MenuItem mi = (MenuItem)sender;
             string cuenta = mi.Header.ToString();
-            c = MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numeroCuenta == cuenta);
+            c = MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numerocuenta == cuenta);
 
-            RealizarIngreso ri = new RealizarIngreso(MainWindow.user.CuentasBancarias.FirstOrDefault());
+            RealizarIngreso ri = new RealizarIngreso(c);
             ri.Show();
             this.Close();
         }
@@ -81,7 +81,7 @@ namespace ProyectoADAT
         {
             MenuItem mi = (MenuItem)sender;
             string cuenta = mi.Header.ToString();
-            c = MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numeroCuenta == cuenta);
+            c = MainWindow.u.RepositorioCuentasBancarias.Single(a => a.numerocuenta == cuenta);
             DepositosYAcciones dya = new DepositosYAcciones(c);
             dya.Show();
             this.Close();
@@ -93,8 +93,8 @@ namespace ProyectoADAT
             foreach (CuentaBancaria item in MainWindow.user.CuentasBancarias)
             {
                 MenuItem mi = new MenuItem();
-                mi.Header = item.numeroCuenta;
-                mi.ToolTip = item.numeroCuenta.ToString();
+                mi.Header = item.numerocuenta;
+                mi.ToolTip = item.numerocuenta.ToString();
                 mi.Click += menuItemG_Click;
                 cm.Items.Add(mi);
             }
@@ -108,8 +108,8 @@ namespace ProyectoADAT
             foreach (CuentaBancaria item in MainWindow.user.CuentasBancarias)
             {
                 MenuItem mi = new MenuItem();
-                mi.Header = item.numeroCuenta;
-                mi.ToolTip = item.numeroCuenta.ToString();
+                mi.Header = item.numerocuenta;
+                mi.ToolTip = item.numerocuenta.ToString();
                 mi.Click += menuItemI_Click;
                 cm.Items.Add(mi);
             }
@@ -123,8 +123,8 @@ namespace ProyectoADAT
             foreach (CuentaBancaria item in MainWindow.user.CuentasBancarias)
             {
                 MenuItem mi = new MenuItem();
-                mi.Header = item.numeroCuenta;
-                mi.ToolTip = item.numeroCuenta.ToString();
+                mi.Header = item.numerocuenta;
+                mi.ToolTip = item.numerocuenta.ToString();
                 mi.Click += menuItemD_Click;
                 cm.Items.Add(mi);
             }

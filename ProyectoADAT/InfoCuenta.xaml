@@ -59,9 +59,9 @@
                 <ColumnDefinition Width="274"/>
             </Grid.ColumnDefinitions>
             <Image x:Name="image" Stretch="Uniform" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="154"/>
-            <Label x:Name="label" Content="{Binding Path=numeroCuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Width="250" Height="38"/>
-            <Label x:Name="label_Copy" Content="{Binding Path=titularCuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Height="38" Grid.Row="1" Width="250"/>
-            <Label x:Name="label_Copy1" Content="{Binding Path=entidadCuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Height="38" Grid.Row="2" Width="250"/>
+            <Label x:Name="label" Content="{Binding Path=numerocuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Width="250" Height="38"/>
+            <Label x:Name="label_Copy" Content="{Binding Path=titularcuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Height="38" Grid.Row="1" Width="250"/>
+            <Label x:Name="label_Copy1" Content="{Binding Path=entidadcuenta}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Grid.Column="1" Height="38" Grid.Row="2" Width="250"/>
             <StackPanel Grid.Column="1" Grid.Row="3" Margin="0,0,20,0" Orientation="Horizontal">
                 <Label x:Name="label_Copy2" Content="{Binding Path=saldo}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Height="38" Width="200"/>
                 <Label x:Name="label_Copy3" Content="€" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Top" Height="38" Width="53"/>

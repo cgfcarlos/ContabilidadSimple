@@ -16,24 +16,24 @@
                     <Image x:Name="image" Source="Imagenes/img.PNG" HorizontalAlignment="Left" Height="199" VerticalAlignment="Top" Width="218" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" Height="325" VerticalAlignment="Top" Width="248" Orientation="Vertical">
-                    <TextBox x:Name="textBoxNombre" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=nombreUsuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="243"/>
-                    <TextBox x:Name="textBoxApellidos" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=apellidosUsuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Apellidos" VerticalAlignment="Top" Width="233"/>
-                    <TextBox x:Name="textBoxDNI" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=dniUsuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="DNI" VerticalAlignment="Top" Width="233" />
-                    <TextBox x:Name="textBoxNick" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=nickUsuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Nick" VerticalAlignment="Top" Width="233"/>
+                    <TextBox x:Name="textBoxNombre" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=nombreusuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="243"/>
+                    <TextBox x:Name="textBoxApellidos" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=apellidosusuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Apellidos" VerticalAlignment="Top" Width="233"/>
+                    <TextBox x:Name="textBoxDNI" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=dniusuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="DNI" VerticalAlignment="Top" Width="233" />
+                    <TextBox x:Name="textBoxNick" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=nickusuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Nick" VerticalAlignment="Top" Width="233"/>
                     <PasswordBox x:Name="textBoxPassword" HorizontalAlignment="Left" Height="35" Margin="5,5,0,5" Password="" materialDesign:HintAssist.Hint="Contraseña" VerticalAlignment="Top" Width="233"/>
-                    <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=emailUsuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Email" VerticalAlignment="Top" Width="233"/>
-                    <TextBox x:Name="textBoxTlf" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=tlfUsuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Teléfono" VerticalAlignment="Top" Width="233"/>
+                    <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=emailusuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Email" VerticalAlignment="Top" Width="233"/>
+                    <TextBox x:Name="textBoxTlf" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Margin="5,5,0,5" Text="{Binding Path=tlfusuario, Mode=TwoWay}" materialDesign:HintAssist.Hint="Teléfono" VerticalAlignment="Top" Width="233"/>
 
                 </StackPanel>
             </StackPanel>
             <Button Name="buttonModificar" Content="Guardar Cambios" Click="buttonModificar_Click"/>
-            <Button Name="buttonInforme" Content="Desplegar Informe de Todos los Movimientos" Click="buttonInforme_Click" Margin="0,10,0,0"/>
+            <Button Name="buttonInforme" Content="Desplegar Informe de Todos los Movimientos" Click="buttonInforme_Click" Margin="0,10,0,0" Visibility="Visible"/>
 
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" Height="428" Margin="590,149,0,0" VerticalAlignment="Top" Width="635">
             <DataGrid Name="dataGridCuentas" DataContext="{Binding Source=CuentaBancaria}" IsReadOnly="True" AutoGenerateColumns="False" Height="429">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn>
+                    <!--<DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="buttonDeleteFila" Click="buttonDeleteFila_Click">
@@ -41,11 +41,11 @@
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="NumeroCuenta" Binding="{Binding Path=numeroCuenta}"/>
-                    <DataGridTextColumn Header="Titular" Binding="{Binding Path=titularCuenta}"/>
-                    <DataGridTextColumn Header="EntidadBancaria" Binding="{Binding Path=entidadCuenta}"/>
-                    <DataGridTextColumn Header="TipoCuenta" Binding="{Binding Path=tipoCuenta}"/>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTextColumn Header="NumeroCuenta" Binding="{Binding Path=numerocuenta}"/>
+                    <DataGridTextColumn Header="Titular" Binding="{Binding Path=titularcuenta}"/>
+                    <DataGridTextColumn Header="EntidadBancaria" Binding="{Binding Path=entidadcuenta}"/>
+                    <DataGridTextColumn Header="TipoCuenta" Binding="{Binding Path=tipocuenta}"/>
                     <DataGridTextColumn Header="Saldo" Binding="{Binding Path=saldo}"/>
                 </DataGrid.Columns>
             </DataGrid>

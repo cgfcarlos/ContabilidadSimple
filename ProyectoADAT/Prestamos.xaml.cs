@@ -108,25 +108,25 @@ namespace ProyectoADAT
                 if (r == MessageBoxResult.OK)
                 {
                     DateTime fechagasto = Convert.ToDateTime(datePickerConcesion.Text);
-                    Ingreso i = new Ingreso();
-                    i.nombreIngreso = "Prestamo";
-                    i.tipoIngreso = "Prestamo Bancario";
-                    i.fechaOperacion = Convert.ToDateTime(datePickerConcesion.Text);
-                    i.fechaValor = Convert.ToDateTime(datePickerConcesion.Text);
+                    Operacion i = new Operacion();
+                    i.nombreoperacion = "Prestamo";
+                    i.tipooperacion = "Prestamo Bancario";
+                    i.fechaoperacion = Convert.ToDateTime(datePickerConcesion.Text);
+                    i.fechavalor = Convert.ToDateTime(datePickerConcesion.Text);
                     i.cuantia = Convert.ToDecimal(textBoxMontante.Text);
                     i.CuentaBancaria = this.c;
-                    MainWindow.u.RepositorioIngresos.Create(i);
+                    MainWindow.u.RepositorioOperaciones.Create(i);
                     foreach (Prestamo item in pS)
                     {
-                        Gasto g = new Gasto();
-                        g.nombreGasto = "Prestamo";
-                        g.tipoGasto = "Prestamo Bancario";
+                        Operacion g = new Operacion();
+                        g.nombreoperacion = "Prestamo";
+                        g.tipooperacion = "Prestamo Bancario";
                         fechagasto = fechagasto.AddMonths(1);
-                        g.fechaOperacion = fechagasto;
-                        g.fechaValor = fechagasto;
-                        g.cuantia = Convert.ToDecimal(item.Anualidad);
+                        g.fechaoperacion = fechagasto;
+                        g.fechavalor = fechagasto;
+                        g.cuantia = (-1*Convert.ToDecimal(item.Anualidad));
                         g.CuentaBancaria = this.c;
-                        MainWindow.u.RepositorioGastos.Create(g);
+                        MainWindow.u.RepositorioOperaciones.Create(g);
 
                     }
                 }

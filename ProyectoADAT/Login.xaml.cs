@@ -3,6 +3,7 @@ using ProyectoADAT.DAL;
 using ProyectoADAT.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace ProyectoADAT
         public MainWindow()
         {
             InitializeComponent();
+            u.RepositorioUsuarios.GetAll();
         }
 
         private void TextBlock_MouseEnter(object sender, MouseEventArgs e)
@@ -49,11 +51,15 @@ namespace ProyectoADAT
 
         private void btnAcceder_Click(object sender, RoutedEventArgs e)
         {
-            if (u.RepositorioUsuarios.Single(a => a.nickUsuario == textBoxUser.Text || a.emailUsuario == textBoxUser.Text) != null)
+            if (u.RepositorioUsuarios.Single(a => a.nickusuario == textBoxUser.Text || a.emailusuario == textBoxUser.Text) != null)
             {
-                if(u.RepositorioUsuarios.Single(a=>a.nickUsuario==textBoxUser.Text && a.passwordUsuario == passwordBox.Password) != null)
+                if(u.RepositorioUsuarios.Single(a=>a.nickusuario==textBoxUser.Text && a.passwordusuario == passwordBox.Password) != null)
                 {
-                    user = u.RepositorioUsuarios.Single(a => a.nickUsuario == textBoxUser.Text);
+                    user = u.RepositorioUsuarios.Single(a => a.nickusuario == textBoxUser.Text);
+                    if (!Directory.Exists(@".\..\..\Usuarios\"+user.CuentasBancarias.FirstOrDefault().numerocuenta))
+                    {
+                        Directory.CreateDirectory(@".\..\..\Usuarios\"+ user.CuentasBancarias.FirstOrDefault().numerocuenta);
+                    }
                     SeleccionarOpcion so = new SeleccionarOpcion();
                     so.Show();
                     this.Close();

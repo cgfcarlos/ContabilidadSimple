@@ -36,16 +36,16 @@ namespace ProyectoADAT
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (MainWindow.u.RepositorioUsuarios.GetAll().Where(a => a.emailUsuario == textBoxEmail.Text) != null)
+            if (MainWindow.u.RepositorioUsuarios.GetAll().Where(a => a.emailusuario == textBoxEmail.Text) != null)
             {
                 try
                 {
                     SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587);
                     client.Credentials = new NetworkCredential(email, password);
                     client.EnableSsl = true;
-                    MailMessage mail = new MailMessage("pedorapcarlos@hotmail.com", MainWindow.u.RepositorioUsuarios.Single(a => a.emailUsuario == textBoxEmail.Text).emailUsuario);
+                    MailMessage mail = new MailMessage("pedorapcarlos@hotmail.com", MainWindow.u.RepositorioUsuarios.Single(a => a.emailusuario == textBoxEmail.Text).emailusuario);
                     mail.Subject = "Reestablecer Contraseña";
-                    mail.Body = @"Bienvenido!  Ha solicitado que le enviemos de nuevo la contraseña.  Su contraseña es: "+MainWindow.u.RepositorioUsuarios.Single(a => a.emailUsuario == textBoxEmail.Text).passwordUsuario;
+                    mail.Body = @"Bienvenido!  Ha solicitado que le enviemos de nuevo la contraseña.  Su contraseña es: "+MainWindow.u.RepositorioUsuarios.Single(a => a.emailusuario == textBoxEmail.Text).passwordusuario;
 
                     client.Send(mail);
 
@@ -53,7 +53,7 @@ namespace ProyectoADAT
                 }
                 catch(Exception ex)
                 {
-                    MaterialMessageBox.ShowError(ex.ToString());
+                    MaterialMessageBox.ShowError("No existe ese email en la base de datos");
                 }
             }
             else

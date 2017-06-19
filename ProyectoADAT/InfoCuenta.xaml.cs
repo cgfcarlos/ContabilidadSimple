@@ -25,6 +25,7 @@ using System.Diagnostics;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Office.Interop.Excel;
+using MySql.Data.MySqlClient;
 
 namespace ProyectoADAT
 {
@@ -52,10 +53,10 @@ namespace ProyectoADAT
             {
                 label_Copy2.Foreground = Brushes.Green;
             }
-            if (c.Usuario.imagenUsuario != null && !String.IsNullOrWhiteSpace(c.Usuario.imagenUsuario))
-            {
-                image.Source = new BitmapImage(new Uri(System.Environment.CurrentDirectory + "../../../Imagenes/" + c.Usuario.imagenUsuario));
-            }
+            //if (c.Usuario.imagenUsuario != null && !String.IsNullOrWhiteSpace(c.Usuario.imagenUsuario))
+            //{
+            //    image.Source = new BitmapImage(new Uri(System.Environment.CurrentDirectory + "../../../Imagenes/" + c.Usuario.imagenUsuario));
+            //}
             Iniciar();
         }
 
@@ -80,20 +81,17 @@ namespace ProyectoADAT
             ig = new List<IngresosYGastos>();
             decimal mediaIngresos = 0;
             decimal mediaGastos = 0;
-            foreach (Gasto item in c.Gastos)
+            foreach (Operacion item in c.Operaciones)
             {
-                if (item.fechaValor.Month == DateTime.Now.Month)
+                if (item.fechavalor.Month == DateTime.Now.Month && item.tipooperacion=="Gasto")
                 { 
-                    IngresosYGastos inggas = new IngresosYGastos(item.nombreGasto, item.tipoGasto, item.cuantia, item.fechaOperacion, item.fechaValor);
+                    IngresosYGastos inggas = new IngresosYGastos(item.nombreoperacion, item.tipooperacion, item.cuantia, item.fechaoperacion, item.fechavalor);
                     ig.Add(inggas);
                     mediaGastos += item.cuantia;
                 }
-            }
-            foreach (Ingreso item in c.Ingresos)
-            {
-                if (item.fechaValor.Month == DateTime.Now.Month)
+                else if (item.fechavalor.Month == DateTime.Now.Month && item.tipooperacion == "Ingreso")
                 {
-                    IngresosYGastos inggas = new IngresosYGastos(item.nombreIngreso, item.tipoIngreso, item.cuantia, item.fechaOperacion, item.fechaValor);
+                    IngresosYGastos inggas = new IngresosYGastos(item.nombreoperacion, item.tipooperacion, item.cuantia, item.fechaoperacion, item.fechavalor);
                     ig.Add(inggas);
                     mediaIngresos += item.cuantia;
                 }
@@ -101,8 +99,8 @@ namespace ProyectoADAT
 
             //Graficos de estadisticas media ingresos/gastos
             System.Windows.Forms.DataVisualization.Charting.Chart chart = this.FindName("MyWinformChart") as System.Windows.Forms.DataVisualization.Charting.Chart;
-            List<Ingreso> ingresosMesActual = MainWindow.u.RepositorioIngresos.Get(a => a.fechaOperacion.Month == DateTime.Now.Month);
-            List<Gasto> gastosMesActual = MainWindow.u.RepositorioGastos.Get(a => a.fechaOperacion.Month == DateTime.Now.Month);
+            List<Operacion> ingresosMesActual = MainWindow.u.RepositorioOperaciones.Get(a => a.fechaoperacion.Month == DateTime.Now.Month && a.tipooperacion=="Ingreso");
+            List<Operacion> gastosMesActual = MainWindow.u.RepositorioOperaciones.Get(a => a.fechaoperacion.Month == DateTime.Now.Month && a.tipooperacion == "Gasto");
 
             mediaGastos = mediaGastos*-1 ;
             //mediaIngresos = mediaIngresos / ingresosMesActual.Count;
@@ -123,7 +121,7 @@ namespace ProyectoADAT
         private void cargarLista()
         {
             //Cargar pdfs en listBox
-            DirectoryInfo d = new DirectoryInfo(@".\..\..\Usuarios" + @"\" + c.numeroCuenta);//Assuming Test is your Folder
+            DirectoryInfo d = new DirectoryInfo(@".\..\..\Usuarios" + @"\" + c.numerocuenta);//Assuming Test is your Folder
             FileInfo[] Files = d.GetFiles("*.pdf");
             foreach (FileInfo item in Files)
             {
@@ -144,7 +142,7 @@ namespace ProyectoADAT
         {
             if (listBox.SelectedIndex > -1)
             {
-                string ruta = @"..\..\Usuarios\" + c.numeroCuenta + @"\" + listBox.SelectedItem.ToString();
+                string ruta = @"..\..\Usuarios\" + c.numerocuenta + @"\" + listBox.SelectedItem.ToString();
                 Process myProcess = new Process();
                 myProcess.StartInfo.FileName = "acroRd32.exe";
                 myProcess.StartInfo.Arguments = ruta;
@@ -174,7 +172,7 @@ namespace ProyectoADAT
                                     using (HtmlTextWriter hw = new HtmlTextWriter(sw))
                                     {
                                         int orderNo = 1234;
-                                        string companyName = c.entidadCuenta;
+                                        string companyName = c.entidadcuenta;
                                         sb.Append("<table width='100%' cellspacing='0' cellpadding='2'>");
                                         sb.Append("<tr><td align='center' style='background-color: #18B5F0' colspan = '2'><b>Extracto Bancario</b></td></tr>");
                                         sb.Append("<tr><td colspan = '2'></td></tr>");
@@ -187,7 +185,7 @@ namespace ProyectoADAT
                                         sb.Append(companyName);
                                         sb.Append("</td></tr>");
                                         sb.Append("<tr><td colspan = '2'><b>Titular: </b>");
-                                        sb.Append(c.titularCuenta);
+                                        sb.Append(c.titularcuenta);
                                         sb.Append("</td></td>");
                                         sb.Append("</table>");
                                         sb.Append("<br />");
@@ -248,7 +246,7 @@ namespace ProyectoADAT
                             bytes = ms.ToArray();
                         }
                     }
-                    string testFile = "./../../Usuarios/" + c.numeroCuenta + "/" + "Extracto_" + DateTime.Now.Day + DateTime.Now.Month + DateTime.Now.Year + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond + ".pdf";
+                    string testFile = "./../../Usuarios/" + c.numerocuenta + "/" + "Extracto_" + DateTime.Now.Day + DateTime.Now.Month + DateTime.Now.Year + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond + ".pdf";
                     System.IO.File.WriteAllBytes(testFile, bytes);
                     c.saldo = cuantiaRes;
                     MainWindow.u.RepositorioCuentasBancarias.Update(c);
@@ -266,121 +264,150 @@ namespace ProyectoADAT
 
         private void MenuExcel_Click(object sender, RoutedEventArgs e)
         {
-            // Crear un objeto SqlConnection, y luego pasar la ConnectionString al constructor.            
-            string CadenaString = "Data Source=.;Initial Catalog=Contabilidad;Integrated Security=SSPI;";
-            SqlConnection Conection = new SqlConnection(CadenaString);
+            try { 
+                /*System.Data.Sql.SqlDataSourceEnumerator instance = System.Data.Sql.SqlDataSourceEnumerator.Instance;
 
-            // Utilizar una variable para almacenar la instrucción SQL.
+                System.Data.DataTable dataTable = instance.GetDataSources();
+
+                foreach (System.Data.DataRow row in dataTable.Rows)
+                {
+                    foreach (System.Data.DataColumn col in dataTable.Columns)
+                    {
+                        Console.WriteLine("{0} = {1}", col.ColumnName, row[col]);
+                    }
+                    Console.WriteLine("============================");
+                }*/
+
+
+                // Crear un objeto SqlConnection, y luego pasar la ConnectionString al constructor.   
+                //Properties.Settings.Default.
+                         
+                string CadenaString = "Data Source=.;Initial Catalog=Contabilidad;Integrated Security=SSPI;";
+                string cs = @"server=127.0.0.1;port=3306;uid=admin;pwd=admin;database=contabilidad";
+                MySqlConnection Conection = new MySqlConnection(cs);
+                Conection.Open();
+                // Utilizar una variable para almacenar la instrucción SQL.
+
+                // metadata=res://*/Model1.csdl | res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=CentroMedico;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient"*/
+                string SelectString = "SELECT operacion.fechaoperacion, operacion.nombreoperacion, operacion.fechavalor, operacion.cuantia FROM operacion WHERE CuentaBancaria_cuentabancariaid=" + c.cuentabancariaid;
+                MySqlCommand cmd = new MySqlCommand(SelectString, Conection);
+                cmd.ExecuteNonQuery();
+                MySqlDataAdapter Adaptador = new MySqlDataAdapter(cmd);
+               
+                
+                System.Data.DataTable table = new System.Data.DataTable();
+                table.Clear();
+                Adaptador.Fill(table);
+
+                //DataSet DS = new DataSet();
+
+                // Abrir la conexión.
+                
+                //Adaptador.Fill(DS);
+                Conection.Close();
+
+                // Creamos un objeto Excel.
+                Microsoft.Office.Interop.Excel.Application Mi_Excel = default(Microsoft.Office.Interop.Excel.Application);
+                // Creamos un objeto WorkBook. Para crear el documento Excel.           
+                Workbook LibroExcel = default(Workbook);
+                // Creamos un objeto WorkSheet. Para crear la hoja del documento.
+                Worksheet HojaExcel = default(Worksheet);
+
+                // Iniciamos una instancia a Excel, y Hacemos visibles para ver como se va creando el reporte, 
+                // podemos hacerlo visible al final si se desea.
+                Mi_Excel = new Microsoft.Office.Interop.Excel.Application();
+                Mi_Excel.Visible = true;
+
+                /* Ahora creamos un nuevo documento y seleccionamos la primera hoja del 
+                 * documento en la cual crearemos nuestro informe. 
+                 */
+                // Creamos una instancia del Workbooks de excel.            
+                LibroExcel = Mi_Excel.Workbooks.Add();
+                // Creamos una instancia de la primera hoja de trabajo de excel            
+                HojaExcel = LibroExcel.Worksheets[1];
+                HojaExcel.Visible = XlSheetVisibility.xlSheetVisible;
+
+                // Hacemos esta hoja la visible en pantalla 
+                // (como seleccionamos la primera esto no es necesario
+                // si seleccionamos una diferente a la primera si lo
+                // necesitariamos).
+                HojaExcel.Activate();
+
+                // Crear el encabezado de nuestro informe.
+                // La primera línea une las celdas y las convierte un en una sola.            
+                HojaExcel.Range["A1:E1"].Merge();
+                // La segunda línea Asigna el nombre del encabezado.
+                HojaExcel.Range["A1:E1"].Value = "----------------------------------------------";
+                // La tercera línea asigna negrita al titulo.
+                HojaExcel.Range["A1:E1"].Font.Bold = true;
+                // La cuarta línea signa un Size a titulo de 15.
+                HojaExcel.Range["A1:E1"].Font.Size = 15;
+
+                // Crear el subencabezado de nuestro informe
+                HojaExcel.Range["A2:E2"].Merge();
+                HojaExcel.Range["A2:E2"].Value = "EXTRACTO BANCARIO";
+                HojaExcel.Range["A2:E2"].Font.Bold = true;
+                HojaExcel.Range["A2:E2"].Font.Size = 13;
+
+                Range objCelda = HojaExcel.Range["A3", Type.Missing];
+                objCelda.Value = "Fecha";
+
+                objCelda = HojaExcel.Range["B3", Type.Missing];
+                objCelda.Value = "Concepto";
+
+                objCelda = HojaExcel.Range["C3", Type.Missing];
+                objCelda.Value = "Valor";
+
+                objCelda = HojaExcel.Range["D3", Type.Missing];
+                objCelda.Value = "Importe";
+
+                objCelda = HojaExcel.Range["E3", Type.Missing];
+                objCelda.Value = "Saldo";
+
+                objCelda.EntireColumn.NumberFormat = "###,###,###.00";
+
+                int i = 4;
             
-            // metadata=res://*/Model1.csdl | res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=CentroMedico;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient"*/
-            string SelectString = "SELECT Ingresoes.fechaOperacion, Ingresoes.nombreIngreso, Ingresoes.fechaValor, Ingresoes.cuantia FROM Ingresoes WHERE CuentaBancaria_CuentaBancariaId="+ c.CuentaBancariaId +" UNION SELECT Gastoes.fechaOperacion, Gastoes.nombreGasto, Gastoes.fechaValor, Gastoes.cuantia FROM Gastoes WHERE CuentaBancaria_CuentaBancariaId = "+ c.CuentaBancariaId;
+                foreach (DataRow Row in table.Rows)
+                {
+                    // Asignar los valores de los registros a las celdas
 
-            SqlDataAdapter Adaptador = new SqlDataAdapter(SelectString, Conection);
+                    // Fecha Operacion
+                    HojaExcel.Cells[i, "A"] = Row.ItemArray[0];
+                    // Concepto
+                    HojaExcel.Cells[i, "B"] = Row.ItemArray[1];
+                    // Fecha Valor
+                    HojaExcel.Cells[i, "C"] = Row.ItemArray[2];
+                    // Importe
+                    HojaExcel.Cells[i, "D"] = Row.ItemArray[3];
+                    // Saldo
+                    HojaExcel.Cells[i, "E"] = aux+Convert.ToDecimal(Row.ItemArray[3]);
 
-            DataSet DS = new DataSet();
+                    aux=aux + Convert.ToDecimal(Row.ItemArray[3]);
+                    // Avanzamos una fila
+                    i++;
+                }
 
-            // Abrir la conexión.
-            Conection.Open();
-            Adaptador.Fill(DS);
-            Conection.Close();
+                // Seleccionar todo el bloque desde A1 hasta D #de filas.
+                Range Rango = HojaExcel.Range["A3:E" + (i - 1).ToString()];
 
-            // Creamos un objeto Excel.
-            Microsoft.Office.Interop.Excel.Application Mi_Excel = default(Microsoft.Office.Interop.Excel.Application);
-            // Creamos un objeto WorkBook. Para crear el documento Excel.           
-            Workbook LibroExcel = default(Workbook);
-            // Creamos un objeto WorkSheet. Para crear la hoja del documento.
-            Worksheet HojaExcel = default(Worksheet);
+                // Selecionado todo el rango especificado
+                Rango.Select();
 
-            // Iniciamos una instancia a Excel, y Hacemos visibles para ver como se va creando el reporte, 
-            // podemos hacerlo visible al final si se desea.
-            Mi_Excel = new Microsoft.Office.Interop.Excel.Application();
-            Mi_Excel.Visible = true;
+                // Ajustamos el ancho de las columnas al ancho máximo del
+                // contenido de sus celdas
+                Rango.Columns.AutoFit();
 
-            /* Ahora creamos un nuevo documento y seleccionamos la primera hoja del 
-             * documento en la cual crearemos nuestro informe. 
-             */
-            // Creamos una instancia del Workbooks de excel.            
-            LibroExcel = Mi_Excel.Workbooks.Add();
-            // Creamos una instancia de la primera hoja de trabajo de excel            
-            HojaExcel = LibroExcel.Worksheets[1];
-            HojaExcel.Visible = XlSheetVisibility.xlSheetVisible;
+                // Asignar filtro por columna
+                Rango.AutoFilter(1);
 
-            // Hacemos esta hoja la visible en pantalla 
-            // (como seleccionamos la primera esto no es necesario
-            // si seleccionamos una diferente a la primera si lo
-            // necesitariamos).
-            HojaExcel.Activate();
-
-            // Crear el encabezado de nuestro informe.
-            // La primera línea une las celdas y las convierte un en una sola.            
-            HojaExcel.Range["A1:E1"].Merge();
-            // La segunda línea Asigna el nombre del encabezado.
-            HojaExcel.Range["A1:E1"].Value = "----------------------------------------------";
-            // La tercera línea asigna negrita al titulo.
-            HojaExcel.Range["A1:E1"].Font.Bold = true;
-            // La cuarta línea signa un Size a titulo de 15.
-            HojaExcel.Range["A1:E1"].Font.Size = 15;
-
-            // Crear el subencabezado de nuestro informe
-            HojaExcel.Range["A2:E2"].Merge();
-            HojaExcel.Range["A2:E2"].Value = "EXTRACTO BANCARIO";
-            HojaExcel.Range["A2:E2"].Font.Bold = true;
-            HojaExcel.Range["A2:E2"].Font.Size = 13;
-
-            Range objCelda = HojaExcel.Range["A3", Type.Missing];
-            objCelda.Value = "Fecha";
-
-            objCelda = HojaExcel.Range["B3", Type.Missing];
-            objCelda.Value = "Concepto";
-
-            objCelda = HojaExcel.Range["C3", Type.Missing];
-            objCelda.Value = "Valor";
-
-            objCelda = HojaExcel.Range["D3", Type.Missing];
-            objCelda.Value = "Importe";
-
-            objCelda = HojaExcel.Range["E3", Type.Missing];
-            objCelda.Value = "Saldo";
-
-            objCelda.EntireColumn.NumberFormat = "###,###,###.00";
-
-            int i = 4;
-            
-            foreach (DataRow Row in DS.Tables[0].Rows)
-            {
-                // Asignar los valores de los registros a las celdas
-
-                // Fecha Operacion
-                HojaExcel.Cells[i, "A"] = Row.ItemArray[0];
-                // Concepto
-                HojaExcel.Cells[i, "B"] = Row.ItemArray[1];
-                // Fecha Valor
-                HojaExcel.Cells[i, "C"] = Row.ItemArray[2];
-                // Importe
-                HojaExcel.Cells[i, "D"] = Row.ItemArray[3];
-                // Saldo
-                HojaExcel.Cells[i, "E"] = aux+Convert.ToDecimal(Row.ItemArray[3]);
-
-                aux=aux + Convert.ToDecimal(Row.ItemArray[3]);
-                // Avanzamos una fila
-                i++;
+                    // Crear un total general
+                    //LibroExcel.PrintPreview();
             }
-
-            // Seleccionar todo el bloque desde A1 hasta D #de filas.
-            Range Rango = HojaExcel.Range["A3:E" + (i - 1).ToString()];
-
-            // Selecionado todo el rango especificado
-            Rango.Select();
-
-            // Ajustamos el ancho de las columnas al ancho máximo del
-            // contenido de sus celdas
-            Rango.Columns.AutoFit();
-
-            // Asignar filtro por columna
-            Rango.AutoFilter(1);
-
-            // Crear un total general
-            //LibroExcel.PrintPreview();
+            catch(Exception ex)
+            {
+                MaterialMessageBox.ShowError("Ha ocurrido un error inesperado");
+            }
         }
 
         private void panelOculto_MouseLeave(object sender, MouseEventArgs e)

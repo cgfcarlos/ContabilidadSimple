@@ -11,10 +11,10 @@ namespace ProyectoADAT.DAL
         private ContabilidadContext context = new ContabilidadContext();
         private RepositorioUsuarios repositorioUsuarios;
         private RepositorioCuentasBancarias repositorioCuentasBancarias;
-        private RepositorioIngresos repositorioIngresos;
-        private RepositorioGastos repositorioGastos;
-        private RepositorioAcciones repositorioAcciones;
-        private RepositorioDepositos repositorioDepositos;
+        //private RepositorioIngresos repositorioIngresos;
+        private RepositorioOperaciones repositorioOperaciones;
+        //private RepositorioAcciones repositorioAcciones;
+        //private RepositorioDepositos repositorioDepositos;
 
         public RepositorioUsuarios RepositorioUsuarios
         {
@@ -44,58 +44,58 @@ namespace ProyectoADAT.DAL
         
         }
 
-        public RepositorioIngresos RepositorioIngresos
+        //public RepositorioIngresos RepositorioIngresos
+        //{
+        //    get
+        //    {
+        //        if (this.repositorioIngresos == null)
+        //        {
+        //            repositorioIngresos = new RepositorioIngresos(context);
+        //        }
+        //        return repositorioIngresos;
+        //    }
+
+        //}
+
+        public RepositorioOperaciones RepositorioOperaciones
         {
             get
             {
-                if (this.repositorioIngresos == null)
+                if (repositorioOperaciones == null)
                 {
-                    repositorioIngresos = new RepositorioIngresos(context);
+                    repositorioOperaciones = new RepositorioOperaciones(context);
                 }
-                return repositorioIngresos;
-            }
-
-        }
-
-        public RepositorioGastos RepositorioGastos
-        {
-            get
-            {
-                if (repositorioGastos == null)
-                {
-                    repositorioGastos = new RepositorioGastos(context);
-                }
-                return repositorioGastos;
+                return repositorioOperaciones;
             }
 
             
         }
 
-        public RepositorioAcciones RepositorioAcciones
-        {
-            get
-            {
-                if (repositorioAcciones == null)
-                {
-                    repositorioAcciones = new RepositorioAcciones(context);
-                }
-                return repositorioAcciones;
-            }
+        //public RepositorioAcciones RepositorioAcciones
+        //{
+        //    get
+        //    {
+        //        if (repositorioAcciones == null)
+        //        {
+        //            repositorioAcciones = new RepositorioAcciones(context);
+        //        }
+        //        return repositorioAcciones;
+        //    }
 
        
-        }
+        //}
 
-        public RepositorioDepositos RepositorioDepositos
-        {
-            get
-            {
-                if(repositorioDepositos == null)
-                {
-                    repositorioDepositos = new RepositorioDepositos(context);
-                }
-                return repositorioDepositos;
-            }
+        //public RepositorioDepositos RepositorioDepositos
+        //{
+        //    get
+        //    {
+        //        if(repositorioDepositos == null)
+        //        {
+        //            repositorioDepositos = new RepositorioDepositos(context);
+        //        }
+        //        return repositorioDepositos;
+        //    }
 
-        }
+        //}
     }
 }

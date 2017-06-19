@@ -26,8 +26,8 @@ namespace ProyectoADAT
         {
             InitializeComponent();
             this.cuenta = c;
-            dataGridGastos.ItemsSource = cuenta.Gastos;
-            dataGridIngresos.ItemsSource = cuenta.Ingresos;
+            //dataGridGastos.ItemsSource = cuenta.Gastos;
+            //dataGridIngresos.ItemsSource = cuenta.Ingresos;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -39,12 +39,12 @@ namespace ProyectoADAT
         {
             if (dataGridIngresos.SelectedIndex > -1)
             {
-                Ingreso i = (Ingreso)dataGridIngresos.SelectedItem;
-                if (i.fechaOperacion.Month != DateTime.Now.Month)
+                Operacion i = (Operacion)dataGridIngresos.SelectedItem;
+                if (i.fechaoperacion.Month != DateTime.Now.Month)
                 {
-                    MainWindow.u.RepositorioIngresos.Delete(i);
+                    MainWindow.u.RepositorioOperaciones.Delete(i);
                     dataGridIngresos.ItemsSource = "";
-                    dataGridIngresos.ItemsSource = cuenta.Ingresos;
+                    dataGridIngresos.ItemsSource = cuenta.Operaciones;
                 }
                 else
                 {
@@ -56,12 +56,12 @@ namespace ProyectoADAT
         {
             if (dataGridGastos.SelectedIndex > -1)
             {
-                Gasto g = (Gasto)dataGridGastos.SelectedItem;
-                if (g.fechaOperacion.Month != DateTime.Now.Month)
+                Operacion g = (Operacion)dataGridGastos.SelectedItem;
+                if (g.fechaoperacion.Month != DateTime.Now.Month)
                 {
-                    MainWindow.u.RepositorioGastos.Delete(g);
+                    MainWindow.u.RepositorioOperaciones.Delete(g);
                     dataGridGastos.ItemsSource = "";
-                    dataGridGastos.ItemsSource = cuenta.Gastos;
+                    dataGridGastos.ItemsSource = cuenta.Operaciones;
                 }
                 else
                 {
@@ -76,29 +76,29 @@ namespace ProyectoADAT
             {
                 dataGridIngresos.ItemsSource = "";
                 dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.GetAll().Where(a => a.CuentaBancaria==cuenta && a.fechaOperacion>=Convert.ToDateTime(datepickerInicio.Text));
-                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion>=Convert.ToDateTime(datepickerInicio.Text));
+                dataGridGastos.ItemsSource = MainWindow.u.RepositorioOperaciones.GetAll().Where(a => a.CuentaBancaria==cuenta && a.fechaoperacion>=Convert.ToDateTime(datepickerInicio.Text));
+                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioOperaciones.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaoperacion>=Convert.ToDateTime(datepickerInicio.Text));
             }
             else if(datepickerFin.Text != "" && datepickerInicio.Text == "")
             {
                 dataGridIngresos.ItemsSource = "";
                 dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion <= Convert.ToDateTime(datepickerFin.Text));
-                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion <= Convert.ToDateTime(datepickerFin.Text));
+                dataGridGastos.ItemsSource = MainWindow.u.RepositorioOperaciones.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaoperacion <= Convert.ToDateTime(datepickerFin.Text));
+                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioOperaciones.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaoperacion <= Convert.ToDateTime(datepickerFin.Text));
             }
             else if(datepickerFin.Text != "" && datepickerInicio.Text != "")
             {
                 dataGridIngresos.ItemsSource = "";
                 dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = MainWindow.u.RepositorioGastos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion>=Convert.ToDateTime(datepickerInicio.Text) && a.fechaOperacion <= Convert.ToDateTime(datepickerFin.Text));
-                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioIngresos.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaOperacion>=Convert.ToDateTime(datepickerInicio.Text) && a.fechaOperacion <= Convert.ToDateTime(datepickerFin.Text));
+                dataGridGastos.ItemsSource = MainWindow.u.RepositorioOperaciones.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaoperacion>=Convert.ToDateTime(datepickerInicio.Text) && a.fechaoperacion <= Convert.ToDateTime(datepickerFin.Text));
+                dataGridIngresos.ItemsSource = MainWindow.u.RepositorioOperaciones.GetAll().Where(a => a.CuentaBancaria == cuenta && a.fechaoperacion>=Convert.ToDateTime(datepickerInicio.Text) && a.fechaoperacion <= Convert.ToDateTime(datepickerFin.Text));
             }
             else
             {
                 dataGridIngresos.ItemsSource = "";
                 dataGridGastos.ItemsSource = "";
-                dataGridGastos.ItemsSource = cuenta.Gastos;
-                dataGridIngresos.ItemsSource = cuenta.Ingresos;
+                dataGridGastos.ItemsSource = cuenta.Operaciones;
+                dataGridIngresos.ItemsSource = cuenta.Operaciones;
             }
             
         }

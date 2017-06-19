@@ -9,13 +9,29 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProyectoADAT</RootNamespace>
     <AssemblyName>ProyectoADAT</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <PublishUrl>publicar\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -94,6 +110,14 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.ConnectorNET.Data.6.8.3.2\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.ConnectorNET.Entity.6.8.3.2\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PropertyChanged, Version=1.52.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.1.52.1\lib\netstandard10\PropertyChanged.dll</HintPath>
       <Private>False</Private>
@@ -144,6 +168,16 @@
     <Compile Include="Configuracion.xaml.cs">
       <DependentUpon>Configuracion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfigurarBDAT.xaml.cs">
+      <DependentUpon>ConfigurarBDAT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DAL\ConfigurarConexion.cs" />
     <Compile Include="Informe.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,22 +187,11 @@
     <Compile Include="Informes.xaml.cs">
       <DependentUpon>Informes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703170735162_Cuarta.cs" />
-    <Compile Include="Migrations\201703170735162_Cuarta.Designer.cs">
-      <DependentUpon>201703170735162_Cuarta.cs</DependentUpon>
+    <Compile Include="Migrations\201706170109044_Trece.cs" />
+    <Compile Include="Migrations\201706170109044_Trece.Designer.cs">
+      <DependentUpon>201706170109044_Trece.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703170848399_Quinta.cs" />
-    <Compile Include="Migrations\201703170848399_Quinta.Designer.cs">
-      <DependentUpon>201703170848399_Quinta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703170850335_Sexta.cs" />
-    <Compile Include="Migrations\201703170850335_Sexta.Designer.cs">
-      <DependentUpon>201703170850335_Sexta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703170921229_Siete.cs" />
-    <Compile Include="Migrations\201703170921229_Siete.Designer.cs">
-      <DependentUpon>201703170921229_Siete.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\PropertyValidateModel.cs" />
     <Compile Include="Plantilla.xaml.cs">
       <DependentUpon>Plantilla.xaml</DependentUpon>
@@ -182,19 +205,6 @@
     <Compile Include="InfoCuenta.xaml.cs">
       <DependentUpon>InfoCuenta.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703081145246_Auxiliar.cs" />
-    <Compile Include="Migrations\201703081145246_Auxiliar.Designer.cs">
-      <DependentUpon>201703081145246_Auxiliar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703090737036_Segunda.cs" />
-    <Compile Include="Migrations\201703090737036_Segunda.Designer.cs">
-      <DependentUpon>201703090737036_Segunda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703140822548_Tercera.cs" />
-    <Compile Include="Migrations\201703140822548_Tercera.Designer.cs">
-      <DependentUpon>201703140822548_Tercera.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RealizarGasto.xaml.cs">
       <DependentUpon>RealizarGasto.xaml</DependentUpon>
     </Compile>
@@ -211,6 +221,10 @@
       <DependentUpon>SeleccionarOpcion.xaml</DependentUpon>
     </Compile>
     <Page Include="Configuracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigurarBDAT.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,11 +265,8 @@
     </Compile>
     <Compile Include="DAL\ContabilidadContext.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
-    <Compile Include="DAL\RepositorioAcciones.cs" />
     <Compile Include="DAL\RepositorioCuentasBancarias.cs" />
-    <Compile Include="DAL\RepositorioDepositos.cs" />
-    <Compile Include="DAL\RepositorioGastos.cs" />
-    <Compile Include="DAL\RepositorioIngresos.cs" />
+    <Compile Include="DAL\RepositorioOperaciones.cs" />
     <Compile Include="DAL\RepositorioUsuarios.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Login.xaml.cs">
@@ -284,11 +295,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Accion.cs" />
     <Compile Include="Model\CuentaBancaria.cs" />
-    <Compile Include="Model\Deposito.cs" />
-    <Compile Include="Model\Gasto.cs" />
-    <Compile Include="Model\Ingreso.cs" />
+    <Compile Include="Model\Operacion.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -303,30 +311,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Informe.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Informe.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703081145246_Auxiliar.resx">
-      <DependentUpon>201703081145246_Auxiliar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703090737036_Segunda.resx">
-      <DependentUpon>201703090737036_Segunda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703140822548_Tercera.resx">
-      <DependentUpon>201703140822548_Tercera.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703170735162_Cuarta.resx">
-      <DependentUpon>201703170735162_Cuarta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703170848399_Quinta.resx">
-      <DependentUpon>201703170848399_Quinta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703170850335_Sexta.resx">
-      <DependentUpon>201703170850335_Sexta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703170921229_Siete.resx">
-      <DependentUpon>201703170921229_Siete.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706170109044_Trece.resx">
+      <DependentUpon>201706170109044_Trece.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -365,14 +359,12 @@
     <Resource Include="Imagenes\back.png" />
     <Resource Include="Imagenes\trash.png" />
     <Resource Include="Imagenes\Pencil.ico" />
-    <Resource Include="Imagenes\img.PNG" />
     <Resource Include="Imagenes\find_search.png" />
-    <Resource Include="Imagenes\portatil.png" />
     <Resource Include="Imagenes\logout.ico" />
-    <Resource Include="Imagenes\af.PNG" />
     <Resource Include="infopago.ico" />
     <Resource Include="Imagenes\caculator.png" />
     <Resource Include="FodyWeavers.xml" />
+    <Resource Include="Imagenes\img.PNG" />
     <Content Include="Scripts\angular-toggle-switch.js" />
     <Content Include="Scripts\angular-toggle-switch.min.js" />
     <Content Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -383,12 +375,22 @@
     <Content Include="Scripts\nugetexample.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Usuarios\00000000\" />
-    <Folder Include="Usuarios\12132132321\" />
-    <Folder Include="Usuarios\2131313654\" />
+    <Folder Include="Usuarios\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />

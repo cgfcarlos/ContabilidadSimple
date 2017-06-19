@@ -24,7 +24,7 @@ namespace ProyectoADAT
     public partial class RealizarGasto : Window
     {
         CuentaBancaria c;
-        Gasto g= new Gasto();
+        Operacion g= new Operacion();
         public RealizarGasto(CuentaBancaria c)
         {
             InitializeComponent();
@@ -63,20 +63,20 @@ namespace ProyectoADAT
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(textBoxNombre.Text) && !String.IsNullOrWhiteSpace(textBoxTipo.Text) && !String.IsNullOrWhiteSpace(textBoxCuantia.Text) && datePickerFechaOp.SelectedDate != null && datePickerFechaVa.SelectedDate != null)
+            if (!String.IsNullOrWhiteSpace(textBoxNombre.Text) && !String.IsNullOrWhiteSpace(textBoxCuantia.Text) && datePickerFechaOp.SelectedDate != null && datePickerFechaVa.SelectedDate != null)
             {
                 if (char.IsDigit(textBoxCuantia.Text[0]))
                 {
-                    g = new Gasto();
-                    g.nombreGasto = textBoxNombre.Text;
+                    g = new Operacion();
+                    g.nombreoperacion = textBoxNombre.Text;
                     g.cuantia = (Convert.ToDecimal(textBoxCuantia.Text) * -1);
-                    g.tipoGasto = textBoxTipo.Text;
-                    g.fechaOperacion = Convert.ToDateTime(datePickerFechaOp.Text);
-                    g.fechaValor = Convert.ToDateTime(datePickerFechaVa.Text);
+                    g.tipooperacion = "Gasto";
+                    g.fechaoperacion = Convert.ToDateTime(datePickerFechaOp.Text);
+                    g.fechavalor = Convert.ToDateTime(datePickerFechaVa.Text);
                     g.CuentaBancaria = c;
                     if (validado(g))
                     {
-                        MainWindow.u.RepositorioGastos.Create(g);
+                        MainWindow.u.RepositorioOperaciones.Create(g);
                         //InfoCuenta ic = new InfoCuenta(c);
                         //ic.Show();
                         this.Close();

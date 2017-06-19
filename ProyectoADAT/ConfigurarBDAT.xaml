@@ -1,0 +1,26 @@
+﻿<Window x:Class="ProyectoADAT.ConfigurarBDAT"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ProyectoADAT"
+        mc:Ignorable="d"
+        Title="ConfigurarBDAT" Height="501.168" Width="644.893">
+    <Grid Background="Beige">
+        <!--Nombre de la BDAT, instancia, nombre sa, contraseña sqlserver, nombre del equipo(localhost)-->
+        <Label x:Name="lblTitlePass" Content="Configuración de la BDAT" HorizontalAlignment="Left" Margin="118,10,0,0" VerticalAlignment="Top" Width="393" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#8BC34A" FontSize="32" Height="114"/>
+        <TextBox x:Name="textBoxNombreBDAT" HorizontalAlignment="Left" Height="22" Margin="237,140,0,0" TextWrapping="Wrap" Text="" materialDesign:HintAssist.Hint="Nombre de la Base de datos" materialDesign:HintAssist.IsFloating="True" VerticalAlignment="Top" Width="177"/>
+        <ComboBox x:Name="comboBoxInstancia" materialDesign:HintAssist.Hint="Instancia" materialDesign:HintAssist.IsFloating="True" HorizontalAlignment="Left" Margin="237,189,0,0" VerticalAlignment="Top" Width="177"/>
+        <Label x:Name="label" Content="Usuario: " HorizontalAlignment="Left" Margin="237,265,0,0" VerticalAlignment="Top" Width="151"/>
+        <Label x:Name="label1" Content="sa" HorizontalAlignment="Left" Margin="393,265,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelp" Content="Password: " HorizontalAlignment="Left" Margin="237,299,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="labelp1" Content="sqlserver" HorizontalAlignment="Left" Margin="357,299,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+        <Label x:Name="label2" Content="Nombre del equipo" HorizontalAlignment="Left" Margin="237,337,0,0" VerticalAlignment="Top" Width="115"/>
+        <Label x:Name="label3" Content="localhost" HorizontalAlignment="Left" Margin="357,337,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Aceptar" HorizontalAlignment="Left" Margin="237,393,0,0" VerticalAlignment="Top" Width="177" Click="button_Click"/>
+
+
+
+    </Grid>
+</Window>

@@ -7,13 +7,13 @@ namespace ProyectoADAT.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Segunda : IMigrationMetadata
+    public sealed partial class Trece : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Segunda));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Trece));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703090737036_Segunda"; }
+            get { return "201706170109044_Trece"; }
         }
         
         string IMigrationMetadata.Source

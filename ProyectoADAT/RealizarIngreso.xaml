@@ -11,7 +11,6 @@
         <Label x:Name="lblTitlePass" Content="Ingreso" HorizontalAlignment="Left" Margin="225,29,0,0" VerticalAlignment="Top" Width="296" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#8BC34A" FontSize="25" Height="68"/>
         <StackPanel HorizontalAlignment="Left" Height="514" Margin="123,97,0,0" VerticalAlignment="Top" Width="500">
             <TextBox x:Name="textBoxNombre" Height="50" TextWrapping="Wrap" Margin="10" Text="" materialDesign:HintAssist.Hint="Nombre Ingreso" materialDesign:HintAssist.IsFloating="True"/>
-            <TextBox x:Name="textBoxTipo" Height="50" TextWrapping="Wrap" Margin="10" Text="" materialDesign:HintAssist.Hint="Tipo Ingreso" materialDesign:HintAssist.IsFloating="True"/>
             <TextBox x:Name="textBoxCuantia" Height="50" TextWrapping="Wrap" Text="" Margin="10" materialDesign:HintAssist.Hint="Cuantia" materialDesign:HintAssist.IsFloating="True" PreviewTextInput="textBoxCuantia_PreviewTextInput"/>
             <DatePicker x:Name="datePickerFechaOp" Height="50" Margin="10" materialDesign:HintAssist.Hint="Fecha Operacion" materialDesign:HintAssist.IsFloating="True" SelectedDateChanged="datePickerFechaOp_SelectedDateChanged"/>
             <DatePicker x:Name="datePickerFechaVa" Height="50" Margin="12,10,8,10" materialDesign:HintAssist.Hint="Fecha Operacion" materialDesign:HintAssist.IsFloating="True" IsEnabled="False"/>

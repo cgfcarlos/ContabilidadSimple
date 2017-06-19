@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 
 namespace ProyectoADAT.Model
 {
-    public class Gasto : PropertyValidateModel
+    [System.ComponentModel.DataAnnotations.Schema.Table("operacion")]
+    public class Operacion : PropertyValidateModel
     {
-        public int GastoId { get; set; }
+        public int operacionid { get; set; }
         [Required]
-        public string nombreGasto { get; set; }
+        public string nombreoperacion { get; set; }
         [Required]
-        public string tipoGasto { get; set; }
+        public string tipooperacion { get; set; }
         [Required]
         public decimal cuantia { get; set; }
         [Required]
-        public DateTime fechaOperacion { get; set; }
+        public DateTime fechaoperacion { get; set; }
         [Required]
-        public DateTime fechaValor { get; set; }
+        public DateTime fechavalor { get; set; }
 
         public virtual CuentaBancaria CuentaBancaria { get; set; }
     }

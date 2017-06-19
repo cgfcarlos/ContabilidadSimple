@@ -32,12 +32,12 @@ namespace ProyectoADAT
             InitializeComponent();
             this.user = u;
             DataContext = user;
-            filename = user.imagenUsuario;
-            if (user.imagenUsuario != null && filename!="")
-            {
-                image.Source = new BitmapImage(new Uri(System.Environment.CurrentDirectory + "../../../Imagenes/" + u.imagenUsuario));
-            }
-            textBoxPassword.Password = user.passwordUsuario;
+            //filename = user.imagenUsuario;
+            //if (user.imagenUsuario != null && filename!="")
+            //{
+            //    image.Source = new BitmapImage(new Uri(System.Environment.CurrentDirectory + "../../../Imagenes/" + u.imagenUsuario));
+            //}
+            textBoxPassword.Password = user.passwordusuario;
             dataGridCuentas.ItemsSource = user.CuentasBancarias;
 
         }
@@ -80,18 +80,17 @@ namespace ProyectoADAT
                 MessageBoxResult r = MaterialMessageBox.ShowWithCancel("Desea modificar los datos?");
                 if (r == MessageBoxResult.OK)
                 {
-                    user.passwordUsuario = textBoxPassword.Password;
-                    user.imagenUsuario = filename;
+                    user.passwordusuario = textBoxPassword.Password;
                     if (validado(user))
                     {
-                        if (!File.Exists(System.Environment.CurrentDirectory + "../../../Imagenes/" + filename))
+                        /*if (!File.Exists(System.Environment.CurrentDirectory + "../../../Imagenes/" + filename))
                         {
                             File.Copy(path, System.Environment.CurrentDirectory + "../../../Imagenes/" + filename);
                         }
                         else
                         {
                             File.Copy(path, System.Environment.CurrentDirectory + "../../../Imagenes/" + filename.Split('.')[0] + DateTime.Now.Millisecond + filename.Split('.')[1]);
-                        }
+                        }*/
                         MainWindow.u.RepositorioUsuarios.Update(user);
                     }
                 }
@@ -109,7 +108,7 @@ namespace ProyectoADAT
                 MessageBoxResult r = MaterialMessageBox.ShowWithCancel("Desea desvincular la cuenta corriente seleccionada?");
                 if (r == MessageBoxResult.OK)
                 {
-                    Directory.Delete(System.Environment.CurrentDirectory + "../../../Usuarios/" + c.numeroCuenta);
+                    Directory.Delete(System.Environment.CurrentDirectory + "../../../Usuarios/" + c.numerocuenta);
                     MainWindow.u.RepositorioCuentasBancarias.Delete(c);
                     dataGridCuentas.ItemsSource = "";
                     dataGridCuentas.ItemsSource = user.CuentasBancarias;
@@ -170,7 +169,7 @@ namespace ProyectoADAT
 
         private void buttonInforme_Click(object sender, RoutedEventArgs e)
         {
-            Informes inf = new Informes();
+            Informes inf = new Informes(user);
             inf.ShowDialog();
         }
     }

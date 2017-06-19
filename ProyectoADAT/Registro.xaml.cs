@@ -67,45 +67,45 @@ namespace ProyectoADAT
         {
             if (!String.IsNullOrWhiteSpace(textBoxApellidos.Text) && !String.IsNullOrWhiteSpace(textBoxDNI.Text) && !String.IsNullOrWhiteSpace(textBoxEmail.Text) && !String.IsNullOrWhiteSpace(textBoxNick.Text) && !String.IsNullOrWhiteSpace(textBoxNombre.Text) && !String.IsNullOrWhiteSpace(textBoxPassword.Password) && !String.IsNullOrWhiteSpace(textBoxTlf.Text) && comboBoxNumCuentas.SelectedIndex>-1)
             {
-                if (MainWindow.u.RepositorioUsuarios.Single(a => a.nickUsuario==textBoxNick.Text)==null)
+                if (MainWindow.u.RepositorioUsuarios.Single(a => a.nickusuario==textBoxNick.Text)==null)
                 {
                     user = new Usuario();
-                    user.dniUsuario = textBoxDNI.Text;
-                    user.nombreUsuario = textBoxNombre.Text;
-                    user.apellidosUsuario = textBoxApellidos.Text;
-                    user.nickUsuario = textBoxNick.Text;
-                    user.passwordUsuario = textBoxPassword.Password;
-                    user.emailUsuario = textBoxEmail.Text;
-                    user.tlfUsuario = textBoxTlf.Text;
+                    user.dniusuario = textBoxDNI.Text;
+                    user.nombreusuario = textBoxNombre.Text;
+                    user.apellidosusuario = textBoxApellidos.Text;
+                    user.nickusuario = textBoxNick.Text;
+                    user.passwordusuario = textBoxPassword.Password;
+                    user.emailusuario = textBoxEmail.Text;
+                    user.tlfusuario = textBoxTlf.Text;
                     if (validado(user))
                     {
                         MainWindow.u.RepositorioUsuarios.Create(user);
                         if (image.Source != null && !String.IsNullOrWhiteSpace(filename))
                         {
-                            if (!File.Exists(System.Environment.CurrentDirectory + "../../../Imagenes/" + filename))
+                            if (!File.Exists("./../../../Imagenes/" + filename))
                             {
-                                File.Copy(image.Source.ToString(), System.Environment.CurrentDirectory + "../../../Imagenes/" + filename);
+                                File.Copy(image.Source.ToString(), "./../../../Imagenes/" + filename);
                             }
                             else
                             {
-                                File.Copy(image.Source.ToString(), System.Environment.CurrentDirectory + "../../../Imagenes/" + filename.Split('.')[0] + DateTime.Now.Millisecond + filename.Split('.')[1]);
+                                //File.Copy(image.Source.ToString(), System.Environment.CurrentDirectory + "../../../Imagenes/" + filename.Split('.')[0] + DateTime.Now.Millisecond + filename.Split('.')[1]);
                             }
-                            user.imagenUsuario = filename;
+                            //user.imagenUsuario = filename;
                         }
                         for (int i = 0; i < Convert.ToInt32(comboBoxNumCuentas.SelectedItem.ToString()); i++)
                         {
-                            Usuario usuario = MainWindow.u.RepositorioUsuarios.Single(a => a.nickUsuario == textBoxNick.Text);
+                            Usuario usuario = MainWindow.u.RepositorioUsuarios.Single(a => a.nickusuario == textBoxNick.Text);
                             RegistroCuenta rc = new RegistroCuenta(usuario);
                             rc.ShowDialog();
                         }
-                        MainWindow.user = MainWindow.u.RepositorioUsuarios.Single(a => a.nickUsuario == textBoxNick.Text);
+                        MainWindow.user = MainWindow.u.RepositorioUsuarios.Single(a => a.nickusuario == textBoxNick.Text);
                         if (!Directory.Exists(@".\..\..\Usuarios"))
                         {
                             Directory.CreateDirectory(@".\..\..\Usuarios");
                         }
                         MaterialMessageBox.Show("Se ha añadido el usuario correctamente", "Advertencia");
                         SeleccionarOpcion so = new SeleccionarOpcion();
-                        MainWindow.user = MainWindow.u.RepositorioUsuarios.Single(a => a.nickUsuario == textBoxNick.Text);
+                        MainWindow.user = MainWindow.u.RepositorioUsuarios.Single(a => a.nickusuario == textBoxNick.Text);
                         so.Show();
                         this.Close();
                     }
